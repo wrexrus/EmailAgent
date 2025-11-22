@@ -1,16 +1,42 @@
-import { useEffect, useState } from "react";
-import api from "./api";
+import { Route, Routes } from 'react-router-dom';
+import NavigationBar from './components/NavigationBar';
+import Dashboard from './pages/Dashboard';
+import PromptBrain from './pages/PromptBrain';
+import AgentChat from './pages/AgentChat';
+import Drafts from './pages/Drafts';
+import Settings from './pages/Settings';
+import { useState } from 'react';
+import { PanelLeftOpen, PanelRightOpen } from 'lucide-react'
+const App = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-function App() {
-  const [message, setMessage] = useState("");
+  return (
+    <div className='flex h-screen'>
+      <NavigationBar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(s => !s)} />
 
-  useEffect(() => {
-    api.get("/")
-      .then(res => setMessage(res.data))
-      .catch(err => setMessage("Backend not connected"));
-  }, []);
+      <button
+        onClick={() => setSidebarOpen(s => !s)}
+        aria-label="Toggle sidebar"
+        className="cursor-pointer fixed top-4 z-40 p-2 rounded bg-white text-blue-950 shadow hover:bg-gray-300 ml-3"
+        style={{
+          left: sidebarOpen ? '16rem' : '4rem', // matches w-64 (16rem) and w-16 (4rem)
+          transition: 'left 300ms'
+        }}
+      >
+        {sidebarOpen ? <PanelRightOpen /> : <PanelLeftOpen />}
+      </button>
 
-  return <h1>{message}</h1>;
+      <main className='flex-1 overflow-auto'>
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/prompts' element={<PromptBrain />} />
+          <Route path='/chat' element={<AgentChat />} />
+          <Route path='/drafts' element={<Drafts />} />
+          <Route path='/settings' element={<Settings />} />
+        </Routes>
+      </main>
+    </div>
+  )
 }
 
-export default App;
+export default App
