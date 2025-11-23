@@ -1,10 +1,164 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Bot, Send, User } from 'lucide-react';
 
 const AgentChat = () => {
-  return (
-    <div>
-      <h1>Agent chat</h1>
-    </div>
-  )
-}
+  const location = useLocation();
+  const contextEmail = location.state?.email;
 
-export default AgentChat
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Initialize chat with context if available
+  useEffect(() => {
+    if (contextEmail && messages.length === 0) {
+      setMessages([
+        {
+          id: Date.now(),
+          text: `I can see you're asking about the email from ${contextEmail.sender} regarding "${contextEmail.subject}". How can I help you with this email?`,
+          sender: 'agent'
+        }
+      ]);
+    }
+  }, [contextEmail]);
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+
+    // Add user message
+    const userMessage = {
+      id: Date.now(),
+      text: inputValue,
+      sender: 'user',
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+
+    // Simulate agent response
+    setTimeout(() => {
+      const agentMessage = {
+        id: Date.now() + 1,
+        text: "I understand your question. As a mock agent, I can help with email summaries, action item extraction, and draft generation. What would you like me to do?",
+        sender: 'agent',
+      };
+      setMessages(prev => [...prev, agentMessage]);
+    }, 1000);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage(e);
+    }
+  };
+
+  return (
+    <div className="flex flex-col h-full bg-gray-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 px-8 py-5">
+        <h1 className="text-xl font-bold text-gray-800 mb-1">Agent Chat</h1>
+        <p className="text-gray-500 text-sm">Ask questions about your emails</p>
+      </div>
+
+      {/* Context Email Section */}
+      {contextEmail && (
+        <div className="bg-blue-50/50 border-b border-blue-100 px-8 py-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-start gap-3">
+              <div className="flex-1">
+                <h3 className="text-sm font-semibold text-gray-900 mb-1">Context Email:</h3>
+                <p className="text-sm text-gray-700 font-medium">{contextEmail.subject}</p>
+                <p className="text-xs text-gray-500 mt-0.5">From: {contextEmail.sender}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Chat Area */}
+      <div className="flex-1 overflow-y-auto p-8">
+        {messages.length === 0 ? (
+          <div className="h-full flex flex-col items-center justify-center text-center opacity-60">
+            <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+              <Bot size={32} className="text-gray-400" />
+            </div>
+            <h2 className="text-xl font-semibold text-gray-700 mb-2">Start a conversation with your AI agent</h2>
+            <p className="text-gray-500 max-w-md">Ask questions about your emails or request actions</p>
+          </div>
+        ) : (
+          <div className="space-y-6 max-w-4xl mx-auto">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex items-start gap-4 ${message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+              >
+                {/* Avatar */}
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${message.sender === 'user' ? 'bg-gray-200' : 'bg-emerald-500'
+                  }`}>
+                  {message.sender === 'user' ? (
+                    <User size={20} className="text-gray-600" />
+                  ) : (
+                    <Bot size={20} className="text-white" />
+                  )}
+                </div>
+
+                {/* Message Bubble */}
+                <div className={`p-4 rounded-2xl max-w-[80%] ${message.sender === 'user'
+                    ? 'bg-emerald-500 text-white rounded-tr-none'
+                    : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm'
+                  }`}>
+                  <p className="leading-relaxed">{message.text}</p>
+                </div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+        )}
+      </div>
+
+      {/* Input Area */}
+      <div className="bg-white border-t border-gray-200 p-6">
+        <div className="max-w-4xl mx-auto">
+          <form onSubmit={handleSendMessage} className="relative flex gap-4 items-end">
+            <div className="flex-1 relative">
+              <textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Ask about emails, request summaries, or generate replies..."
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 pr-12 text-gray-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none h-[60px] min-h-[60px] max-h-32 transition-all"
+                style={{ height: Math.max(60, Math.min(128, inputValue.split('\n').length * 24 + 24)) + 'px' }}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={!inputValue.trim()}
+              className={`p-4 rounded-xl transition-all duration-200 flex-shrink-0 ${inputValue.trim()
+                  ? 'bg-emerald-500 text-white hover:bg-emerald-600 shadow-md transform hover:scale-105'
+                  : 'bg-emerald-200 text-white cursor-not-allowed'
+                }`}
+            >
+              <Send size={20} />
+            </button>
+          </form>
+          <p className="text-xs text-gray-400 mt-3 ml-1">
+            Press Enter to send, Shift+Enter for new line
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AgentChat;

@@ -17,9 +17,9 @@ const App = () => {
       <button
         onClick={() => setSidebarOpen(s => !s)}
         aria-label="Toggle sidebar"
-        className="cursor-pointer fixed top-4 z-40 p-2 rounded bg-white text-blue-950 shadow hover:bg-gray-300 ml-3"
+        className="cursor-pointer fixed top-4 z-40 p-1 rounded bg-white text-blue-950 shadow hover:bg-gray-300 ml-3"
         style={{
-          left: sidebarOpen ? '16rem' : '4rem', // matches w-64 (16rem) and w-16 (4rem)
+          left: sidebarOpen ? '16rem' : '4rem', 
           transition: 'left 300ms'
         }}
       >
