@@ -18,6 +18,9 @@ app.use('/api/process-emails', processRoutes);
 const agentRoutes = require("./routes/agent");
 app.use("/api/agent", agentRoutes);
 
+const draftRoutes = require("./routes/draft");
+app.use("/api/drafts", draftRoutes);
+
 const DATA_PATH = path.join(__dirname, 'models', 'inbox.json');
 
 // helper: read file
