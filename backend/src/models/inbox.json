@@ -1,0 +1,122 @@
+[
+  {
+    "id": "e1",
+    "senderName": "Sarah Chen",
+    "senderEmail": "sarah.chen@acmecorp.com",
+    "subject": "Q4 Project Deadline - Action Required",
+    "body": "Hi team, We need to finalize the Q4 project deliverables by end of week. Please review the attached documents and confirm your section is complete.",
+    "timestamp": "2025-11-21T09:12:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "We need to finalize the Q4 project deliverables by end of week...",
+    "actionItem": null
+  },
+  {
+    "id": "e2",
+    "senderName": "TechCrunch",
+    "senderEmail": "newsletter@techcrunch.com",
+    "subject": "This Week in AI: Top 10 Developments",
+    "body": "Your weekly dose of AI news and innovations.",
+    "timestamp": "2025-11-20T14:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Your weekly dose of AI news and innovations...",
+    "actionItem": null
+  },
+  {
+    "id": "e3",
+    "senderName": "LinkedIn",
+    "senderEmail": "no-reply@linkedin.com",
+    "subject": "You have 15 new connection requests",
+    "body": "People are reaching out to connect with you.",
+    "timestamp": "2025-11-20T08:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "People are reaching out to connect with you...",
+    "actionItem": null
+  },
+  {
+    "id": "e4",
+    "senderName": "Marcus Johnson",
+    "senderEmail": "marcus@company.com",
+    "subject": "Client Meeting Notes & Follow-ups",
+    "body": "Thanks for the productive meeting today. Here are my notes and follow-ups.",
+    "timestamp": "2025-11-21T07:30:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Thanks for the productive meeting today. Here are my notes...",
+    "actionItem": null
+  },
+  {
+    "id": "e5",
+    "senderName": "HR",
+    "senderEmail": "hr@acmecorp.com",
+    "subject": "Policy Update: Remote Work",
+    "body": "Please read the updated remote work policy attached.",
+    "timestamp": "2025-11-19T12:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Please read the updated remote work policy attached.",
+    "actionItem": null
+  },
+  {
+    "id": "e6",
+    "senderName": "GitHub",
+    "senderEmail": "notifications@github.com",
+    "subject": "New PR: feature/login",
+    "body": "A new pull request has been opened for feature/login.",
+    "timestamp": "2025-11-18T21:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "A new pull request has been opened for feature/login.",
+    "actionItem": null
+  },
+  {
+    "id": "e7",
+    "senderName": "Jane Doe",
+    "senderEmail": "jane@example.com",
+    "subject": "Dinner next week?",
+    "body": "Are you free for dinner on Tuesday?",
+    "timestamp": "2025-11-17T18:30:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Are you free for dinner on Tuesday?",
+    "actionItem": null
+  },
+  {
+    "id": "e8",
+    "senderName": "Billing",
+    "senderEmail": "billing@services.com",
+    "subject": "Invoice #12345 due",
+    "body": "Your invoice is due on Dec 1.",
+    "timestamp": "2025-11-16T10:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Your invoice is due on Dec 1.",
+    "actionItem": null
+  },
+  {
+    "id": "e9",
+    "senderName": "Promo",
+    "senderEmail": "deals@shop.com",
+    "subject": "50% off flash sale",
+    "body": "Limited time offer this weekend.",
+    "timestamp": "2025-11-15T09:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Limited time offer this weekend.",
+    "actionItem": null
+  },
+  {
+    "id": "e10",
+    "senderName": "Team Ops",
+    "senderEmail": "ops@acmecorp.com",
+    "subject": "Weekly Standup - Agenda",
+    "body": "Agenda for tomorrow's standup and items to prepare.",
+    "timestamp": "2025-11-21T06:00:00.000Z",
+    "labels": [],
+    "processed": true,
+    "preview": "Agenda for tomorrow's standup and items to prepare.",
+    "actionItem": null
+  }
+]
