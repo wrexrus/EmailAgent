@@ -5,35 +5,74 @@ const router = express.Router();
 
 const PROMPT_PATH = path.join(__dirname, '..', 'models', 'prompts.json');
 
+function readPrompts() {
+  try {
+    const raw = fs.readFileSync(PROMPT_PATH, 'utf8');
+    return JSON.parse(raw);
+  } catch (err) {
+    return {
+      categorizationPrompt: "Categorize the email into exactly one of: Important, Meeting Request, Newsletter, Spam, To-Do, Project Update. Only respond with the label.",
+      actionItemPrompt: "Extract action items as JSON: {\"task\":\"...\",\"deadline\":\"...\"}. If none, return null.",
+      autoReplyPrompt: "Draft a professional reply. Format:\nSubject: <subject>\nBody:\n<message>"
+    };
+  }
+}
+
+function writePrompts(obj) {
+  fs.writeFileSync(PROMPT_PATH, JSON.stringify(obj, null, 2));
+}
+
 // Read prompts
 router.get('/', (req, res) => {
   try {
-    const raw = fs.readFileSync(PROMPT_PATH, 'utf8');
-    res.json(JSON.parse(raw));
+    const data = readPrompts();
+    res.json(data);
   } catch (err) {
     res.status(500).json({ error: "Cannot read prompts" });
   }
 });
 
-// Save prompts
+// Save (partial or full) prompts - merges into existing
 router.post('/update', (req, res) => {
-  const { categorizationPrompt, actionItemPrompt, autoReplyPrompt } = req.body;
-  if (!categorizationPrompt || !actionItemPrompt || !autoReplyPrompt) {
-    return res.status(400).json({ error: "All prompts required" });
+  try {
+    const existing = readPrompts();
+    const incoming = req.body || {};
+
+    // Validate that incoming fields are strings if present
+    const allowedKeys = ['categorizationPrompt', 'actionItemPrompt', 'autoReplyPrompt'];
+    for (const k of Object.keys(incoming)) {
+      if (!allowedKeys.includes(k)) {
+        return res.status(400).json({ error: `Unknown prompt key: ${k}` });
+      }
+      if (typeof incoming[k] !== 'string') {
+        return res.status(400).json({ error: `${k} must be a string` });
+      }
+    }
+
+    const merged = { ...existing, ...incoming };
+    writePrompts(merged);
+    res.json({ ok: true, message: "Prompts updated", prompts: merged });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update prompts" });
   }
-  fs.writeFileSync(PROMPT_PATH, JSON.stringify(req.body, null, 2));
-  res.json({ ok: true, message: "Prompts updated successfully" });
 });
 
 // Reset to default
 router.post('/reset', (req, res) => {
   const defaultPrompts = {
-    categorizationPrompt: "Categorize emails into: Important, Newsletter, Spam, To-Do. To-Do emails must include a direct request requiring user action.",
-    actionItemPrompt: "Extract tasks from the email. Respond in JSON: { \"task\": \"...\", \"deadline\": \"...\" }.",
-    autoReplyPrompt: "If an email is a meeting request, draft a polite reply asking for an agenda."
+    categorizationPrompt:
+      "Categorize the email into exactly one of: Important, Meeting Request, Newsletter, Spam, To-Do, Project Update. Only respond with the label.",
+    actionItemPrompt:
+      "Extract action items from the email. Respond ONLY with valid JSON: {\"task\":\"<action>\",\"deadline\":\"<optional>\"}. If there are no action items, return null.",
+    autoReplyPrompt:
+      "Draft a professional reply using the provided EMAIL CONTEXT. If the email is a meeting request, ask for agenda or confirm availability. If it is a task request, confirm receipt and provide next steps. Output EXACTLY in this format:\nSubject: <reply subject>\nBody:\n<reply body>"
   };
-  fs.writeFileSync(PROMPT_PATH, JSON.stringify(defaultPrompts, null, 2));
-  res.json({ ok: true, message: "Prompts reset to default" });
+  try {
+    writePrompts(defaultPrompts);
+    res.json({ ok: true, message: "Prompts reset to default", prompts: defaultPrompts });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to reset prompts" });
+  }
 });
 
 module.exports = router;

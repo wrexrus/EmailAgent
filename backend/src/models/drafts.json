@@ -1,24 +1,53 @@
 [
   {
-    "id": "draft-1763994093240",
-    "subject": "Re: Q4 Project Deadline - Action Required",
-    "body": "Hi team,\nafafa\nThank you for the update. I have received the attached documents and will begin reviewing my section for completion.\n\nCould you please clarify the preferred method for confirming completion of my section?\n\nBest regards,\n[Your Name]\n\n*   Suggest a brief follow-up meeting if multiple team members have clarifying questions after their review.\n*   Ask if there's a specific deadline for submitting the confirmation of completion.",
-    "createdAt": "2025-11-24T14:21:33.240Z",
-    "fromEmailId": "e1",
-    "updatedAt": "2025-11-24T14:26:26.865Z"
+    "id": "draft-1764088567657",
+    "emailId": "e2",
+    "subject": "Re: Meeting Request – Client Sync Tomorrow",
+    "body": "Hi Marcus,\n\nThanks for reaching out. Yes, 3 PM tomorrow works well for me. I'm available for the call to discuss client progress and upcoming deadlines.\n\nPlease do share any specific agenda points you have in mind at your convenience so I can prepare accordingly.\n\nLooking forward to our discussion.\n\nBest regards,\n[Your Name]",
+    "suggested_followups": [
+      "Send a calendar invite for tomorrow's call",
+      "Prepare talking points for client progress"
+    ],
+    "metadata": {
+      "category": "Important",
+      "action_item": [
+        {
+          "task": "Confirm availability for the call tomorrow at 3 PM",
+          "deadline": ""
+        },
+        {
+          "task": "Share any agenda points",
+          "deadline": ""
+        }
+      ]
+    },
+    "createdAt": "2025-11-25T16:36:07.657Z"
   },
   {
-    "id": "draft-1763994262070",
-    "subject": "Re: Q4 Project Deadline - Action Required",
-    "body": "Thank you for the update. I will review the attached documents promptly.\n\nCould you please clarify the preferred method for confirming my section's completion once reviewed?\n\n*   Review attached documents and identify your specific section.\n*   Assess current progress against deliverables in your section.",
-    "createdAt": "2025-11-24T14:24:22.070Z",
-    "fromEmailId": "e1"
+    "id": "draft-1764088706111",
+    "emailId": "e12",
+    "subject": "Re: Project Commendation & Next Steps",
+    "body": "Thank you for the commendation on the successful delivery of Phase 2.\n\nI confirm receipt of the action to commence Phase 3 planning by Friday and will initiate the necessary steps immediately.\n\nRegarding the review call, I will prepare some availability options and send them over shortly for your convenience. Please also let me know if there is a specific agenda you would like to cover.",
+    "suggested_followups": [
+      "Send availability options for review call",
+      "Provide update on Phase 3 planning initiation"
+    ],
+    "metadata": {
+      "category": "Project Update",
+      "action_item": null
+    },
+    "createdAt": "2025-11-25T16:38:26.111Z"
   },
   {
-    "id": "draft-1763994276751",
-    "subject": "Re: Q4 Project Deadline - Action Required",
-    "body": "Hi team,\n\nThank you for the update. I have received the attached documents and will begin reviewing my section for the Q4 project deliverables immediately.\n\nCould you please advise on the preferred method or platform for confirming my section's completion by the end of the week?\n\n* Check for any shared document or system for status updates.\n* Prioritize review to ensure timely completion.",
-    "createdAt": "2025-11-24T14:24:36.751Z",
-    "fromEmailId": "e1"
+    "id": "draft-1764088914703",
+    "emailId": "e3",
+    "subject": "Re: Top AI Breakthroughs This Week",
+    "body": "Thank you for sharing this week's newsletter, 'Top AI Breakthroughs This Week.' I appreciate the updates on OpenAI’s latest models, DeepSeek success reports, and the future of LLM regulation.",
+    "suggested_followups": [],
+    "metadata": {
+      "category": "others",
+      "action_item": null
+    },
+    "createdAt": "2025-11-25T16:41:54.703Z"
   }
 ]

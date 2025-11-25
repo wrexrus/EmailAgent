@@ -3,120 +3,195 @@
     "id": "e1",
     "senderName": "Sarah Chen",
     "senderEmail": "sarah.chen@acmecorp.com",
-    "subject": "Q4 Project Deadline - Action Required",
-    "body": "Hi team, We need to finalize the Q4 project deliverables by end of week. Please review the attached documents and confirm your section is complete.",
-    "timestamp": "2025-11-21T09:12:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "We need to finalize the Q4 project deliverables by end of week...",
-    "actionItem": null
+    "subject": "Q4 Project Status Update",
+    "body": "Hi team,\nHere’s the latest update on the Q4 rollout:\n- Backend completed 95%\n- Frontend pending UI test cases\n- Expected completion next Thursday\nLet me know if anyone needs help or more time.\nThanks,\nSarah",
+    "timestamp": "2025-11-22T10:15:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
   },
   {
     "id": "e2",
-    "senderName": "TechCrunch",
-    "senderEmail": "newsletter@techcrunch.com",
-    "subject": "This Week in AI: Top 10 Developments",
-    "body": "Your weekly dose of AI news and innovations.",
-    "timestamp": "2025-11-20T14:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Your weekly dose of AI news and innovations...",
-    "actionItem": null
+    "senderName": "Marcus Johnson",
+    "senderEmail": "marcus@clientcorp.com",
+    "subject": "Meeting Request – Client Sync Tomorrow",
+    "body": "Hello,\nCould we schedule a call tomorrow at 3 PM to discuss the client progress and upcoming deadlines?\nPlease confirm availability and share any agenda points.\nRegards,\nMarcus",
+    "timestamp": "2025-11-21T16:30:00Z",
+    "labels": [
+      "Meetings"
+    ],
+    "actionItem": null,
+    "processed": true
   },
   {
     "id": "e3",
-    "senderName": "LinkedIn",
-    "senderEmail": "no-reply@linkedin.com",
-    "subject": "You have 15 new connection requests",
-    "body": "People are reaching out to connect with you.",
-    "timestamp": "2025-11-20T08:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "People are reaching out to connect with you...",
-    "actionItem": null
+    "senderName": "TechCrunch AI",
+    "senderEmail": "newsletter@techcrunch.com",
+    "subject": "Top AI Breakthroughs This Week",
+    "body": "Welcome to this week's newsletter! We cover:\n- OpenAI’s latest models\n- DeepSeek success reports\n- Future of LLM regulation\nUnsubscribe anytime using the link below.",
+    "timestamp": "2025-11-21T08:20:00Z",
+    "labels": [
+      "Newsletter"
+    ],
+    "actionItem": "null",
+    "processed": true
   },
   {
     "id": "e4",
-    "senderName": "Marcus Johnson",
-    "senderEmail": "marcus@company.com",
-    "subject": "Client Meeting Notes & Follow-ups",
-    "body": "Thanks for the productive meeting today. Here are my notes and follow-ups.",
-    "timestamp": "2025-11-21T07:30:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Thanks for the productive meeting today. Here are my notes...",
-    "actionItem": null
+    "senderName": "Spammy Deals",
+    "senderEmail": "winner@free-prize.com",
+    "subject": "🎉 You've won $10,000 – Claim now",
+    "body": "Congratulations!!! You've been selected as our lucky winner!!! Click here to claim your money or it expires today!!!",
+    "timestamp": "2025-11-20T14:20:00Z",
+    "labels": [
+      "others"
+    ],
+    "actionItem": "```json\n[\n  {\n    \"task\": \"Click to claim money\",\n    \"deadline\": \"today\"\n  }\n]\n```",
+    "processed": true
   },
   {
     "id": "e5",
-    "senderName": "HR",
-    "senderEmail": "hr@acmecorp.com",
-    "subject": "Policy Update: Remote Work",
-    "body": "Please read the updated remote work policy attached.",
-    "timestamp": "2025-11-19T12:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Please read the updated remote work policy attached.",
-    "actionItem": null
+    "senderName": "TaskBot",
+    "senderEmail": "noreply@taskportal.com",
+    "subject": "Action Required: Submit Timesheet",
+    "body": "Reminder:\nPlease submit your weekly timesheet by today 6 PM.\nNon-compliance may lead to workflow delays.\nAutomated message.",
+    "timestamp": "2025-11-19T07:30:00Z",
+    "labels": [
+      "Important"
+    ],
+    "actionItem": "```json\n{\n  \"task\": \"submit your weekly timesheet\",\n  \"deadline\": \"today 6 PM\"\n}\n```",
+    "processed": true
   },
   {
     "id": "e6",
-    "senderName": "GitHub",
-    "senderEmail": "notifications@github.com",
-    "subject": "New PR: feature/login",
-    "body": "A new pull request has been opened for feature/login.",
-    "timestamp": "2025-11-18T21:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "A new pull request has been opened for feature/login.",
-    "actionItem": null
+    "senderName": "HR Department",
+    "senderEmail": "hr@acmecorp.com",
+    "subject": "Office Policy Update - Read before Monday",
+    "body": "Hello Team,\nWe are changing the flexible work policy effective from next month.\nAttendance reporting process also updated.\nAction needed: Confirm acknowledgment of this email.\nThanks,\nHR Team",
+    "timestamp": "2025-11-19T11:45:00Z",
+    "labels": [
+      "Important"
+    ],
+    "actionItem": null,
+    "processed": true
   },
   {
     "id": "e7",
-    "senderName": "Jane Doe",
-    "senderEmail": "jane@example.com",
-    "subject": "Dinner next week?",
-    "body": "Are you free for dinner on Tuesday?",
-    "timestamp": "2025-11-17T18:30:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Are you free for dinner on Tuesday?",
-    "actionItem": null
+    "senderName": "Dev Team Lead",
+    "senderEmail": "lead@acmecorp.com",
+    "subject": "Task Assignment - Bug Fix Priority",
+    "body": "Hi,\nPlease fix the payment API integration issue and send an update by today evening.\nThis is a P1 blocker.\nRegards,\nTeam Lead",
+    "timestamp": "2025-11-18T15:10:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
   },
   {
     "id": "e8",
-    "senderName": "Billing",
-    "senderEmail": "billing@services.com",
-    "subject": "Invoice #12345 due",
-    "body": "Your invoice is due on Dec 1.",
-    "timestamp": "2025-11-16T10:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Your invoice is due on Dec 1.",
-    "actionItem": null
+    "senderName": "Event Team",
+    "senderEmail": "events@acmecorp.com",
+    "subject": "Annual Meetup Invitation",
+    "body": "You're invited to our Annual Company Meetup on Friday at 5 PM.\nNo action required – just confirm attendance.",
+    "timestamp": "2025-11-18T10:05:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
   },
   {
     "id": "e9",
-    "senderName": "Promo",
-    "senderEmail": "deals@shop.com",
-    "subject": "50% off flash sale",
-    "body": "Limited time offer this weekend.",
-    "timestamp": "2025-11-15T09:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Limited time offer this weekend.",
-    "actionItem": null
+    "senderName": "LinkedIn",
+    "senderEmail": "updates@linkedin.com",
+    "subject": "You have new profile views",
+    "body": "Your profile was viewed by 18 professionals.\nGet more visibility by actively sharing content.",
+    "timestamp": "2025-11-18T09:10:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
   },
   {
     "id": "e10",
-    "senderName": "Team Ops",
-    "senderEmail": "ops@acmecorp.com",
-    "subject": "Weekly Standup - Agenda",
-    "body": "Agenda for tomorrow's standup and items to prepare.",
-    "timestamp": "2025-11-21T06:00:00.000Z",
-    "labels": [],
-    "processed": true,
-    "preview": "Agenda for tomorrow's standup and items to prepare.",
-    "actionItem": null
+    "senderName": "Sprint Manager",
+    "senderEmail": "manager@acmecorp.com",
+    "subject": "Sprint Review – Action Needed",
+    "body": "Team,\nPrepare your progress reports for the sprint review meeting on Monday.\nInclude blockers and completed work.\nRegards,\nManager",
+    "timestamp": "2025-11-17T09:00:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
+  },
+  {
+    "id": "e11",
+    "senderName": "Google Learning",
+    "senderEmail": "news@googlelearn.com",
+    "subject": "Your Weekly Learning Digest",
+    "body": "Here’s your curated content for this week.\n🎯 AI Engineering\n🧠 Product Thinking\n📘 Free Certification Access\nClick to start learning.",
+    "timestamp": "2025-11-16T08:15:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
+  },
+  {
+    "id": "e12",
+    "senderName": "CEO Office",
+    "senderEmail": "ceo@acmecorp.com",
+    "subject": "Project Commendation & Next Steps",
+    "body": "The board appreciates the delivery of Phase 2.\nAction: Start Phase 3 planning by Friday.\nSchedule a review call by end of week.",
+    "timestamp": "2025-11-15T18:40:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
+  },
+  {
+    "id": "e13",
+    "senderName": "Report System",
+    "senderEmail": "noreply@sys.mail",
+    "subject": "Daily Status Required",
+    "body": "Please send daily deliverable updates and current task completion percentages.\nDeadline: 5 PM today.",
+    "timestamp": "2025-11-15T09:10:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
+  },
+  {
+    "id": "e14",
+    "senderName": "Marcus Johnson",
+    "senderEmail": "marcus@clientcorp.com",
+    "subject": "Follow-up: Meeting Reschedule",
+    "body": "Hi, we couldn’t meet today.\nCan we reschedule our meeting to next Wednesday at 11 AM?\nPlease confirm.",
+    "timestamp": "2025-11-14T10:15:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
+  },
+  {
+    "id": "e15",
+    "senderName": "Marketing Updates",
+    "senderEmail": "newsletter@marketpulse.com",
+    "subject": "Top 5 Social Trends You Should Know",
+    "body": "This is a subscription email. We're sharing the latest social media growth metrics.\nTo unsubscribe, click here.",
+    "timestamp": "2025-11-13T07:55:00Z",
+    "labels": [
+      "Uncategorized"
+    ],
+    "actionItem": null,
+    "processed": true
   }
 ]

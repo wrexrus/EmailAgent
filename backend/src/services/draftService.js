@@ -7,96 +7,116 @@ const PROMPT_PATH = path.join(__dirname, "..", "models", "prompts.json");
 const DRAFT_PATH = path.join(__dirname, "..", "models", "drafts.json");
 
 function loadInbox() {
-    return JSON.parse(fs.readFileSync(INBOX_PATH, "utf8"));
+  return JSON.parse(fs.readFileSync(INBOX_PATH, "utf8"));
 }
 
 function loadPrompts() {
-    return JSON.parse(fs.readFileSync(PROMPT_PATH, "utf8"));
+  return JSON.parse(fs.readFileSync(PROMPT_PATH, "utf8"));
 }
 
 function loadDrafts() {
-    return JSON.parse(fs.readFileSync(DRAFT_PATH, "utf8"));
+  return JSON.parse(fs.readFileSync(DRAFT_PATH, "utf8"));
 }
 
 function saveDrafts(data) {
-    fs.writeFileSync(DRAFT_PATH, JSON.stringify(data, null, 2));
+  fs.writeFileSync(DRAFT_PATH, JSON.stringify(data, null, 2));
 }
 
 async function generateDraft(emailId) {
-    const emails = loadInbox();
-    const email = emails.find(e => e.id === emailId);
-    if (!email) return { error: "Email not found" };
+  const emails = loadInbox();
+  const email = emails.find(e => e.id === emailId);
+  if (!email) return { error: "Email not found" };
 
-    const prompts = loadPrompts();
+  const prompts = loadPrompts();
 
-    const prompt = `
-    Using the AUTO REPLY PROMPT:
-    "${prompts.autoReplyPrompt}"
+  const prompt = `
+You are an AI email drafting agent.
 
-    Email context:
-    Subject: ${email.subject}
-    Body:
-    ${email.body}
+Follow these rules:
+- Use the user's auto-reply prompt below.
+- Use the full email context provided.
+- Respond ONLY with a JSON object. No reasoning, no markdown.
 
-    + If the email is a meeting request → apply the auto-reply prompt strictly.
-    + If it's not a meeting request → generate a polite acknowledgment reply asking for clarification or sharing next steps.
-    + Always format like this:
+AUTO-REPLY PROMPT:
+"${prompts.autoReplyPrompt}"
 
-    Subject: <reply subject>
-    Body:
-    <reply body>
+EMAIL CONTEXT:
+From: ${email.senderName} <${email.senderEmail}>
+Subject: ${email.subject}
+Body:
+${email.body}
 
-    + Strictly output only the above format.
-    + Do NOT explain conditions or internal logic.
-    + If unsure, generate a polite follow-up response requesting more details.
-    + Provide 1-2 bullet-point follow-up suggestions if useful.
-    `;
+OUTPUT FORMAT:
+{
+  "subject": "<reply subject>",
+  "body": "<reply body>",
+  "suggested_followups": ["<optional>", "<optional>"],
+  "metadata": {
+    "category": "${email.labels?.[0] || ""}",
+    "action_item": ${email.actionItem ? JSON.stringify(email.actionItem) : "null"}
+  }
+}
+`;
 
+  let response = await runPrompt(prompt);
 
-    const response = await runPrompt(prompt);
-    let textResponse = response;
+  // Handle Gemini structured responses
+  if (typeof response === "object" && response.parts) {
+    response = response.parts.map(p => p.text).join(" ");
+  }
 
-    // If response is Gemini structured format
-    if (typeof textResponse === 'object') {
-        if (textResponse.parts) {
-            textResponse = textResponse.parts.map(p => p.text).join('\n');
-        } else {
-            textResponse = JSON.stringify(textResponse);
-        }
+  // Convert to string and fully clean anything resembling markdown/code fences
+  response = String(response)
+    .replace(/```json|```|\u200B/g, "") // remove all code blocks and zero-width chars
+    .replace(/^\s+|\s+$/g, "")           // trim leading/trailing whitespace
+    .trim();
+
+  let parsedDraft;
+  try {
+    parsedDraft = JSON.parse(response);
+
+    // Handle nested JSON string for action_item, if needed
+    if (parsedDraft?.metadata?.action_item && typeof parsedDraft.metadata.action_item === "string") {
+      try {
+        parsedDraft.metadata.action_item = JSON.parse(
+          parsedDraft.metadata.action_item
+            .replace(/```json|```|\u200B/g, "")
+            .trim()
+        );
+      } catch {
+        // If parsing fails, fallback silently
+      }
     }
+  } catch (err) {
+    console.error("❌ Draft JSON parsing failed:", err);
+    console.error("⚠ Raw response was:", response);
 
-    // Now extract draft content safely
-    // Expect format:
-    // Subject: <subject>
-    // Body:
-    // <body>
-
-    let subject = "Draft Response";
-    let body = textResponse;
-
-    // Try to split if Gemini respects prompt format
-    try {
-        const parts = textResponse.split(/Body:/i);
-        subject = parts[0].replace(/Subject:/i, "").trim() || subject;
-        body = parts[1]?.trim() || body;
-    } catch (err) {
-        console.warn("Could not extract subject/body properly. Using full response as body.");
-    }
-
-    const draft = {
-        id: `draft-${Date.now()}`,
-        subject,
-        body,
-        createdAt: new Date().toISOString(),
-        fromEmailId: email.id
+    parsedDraft = {
+      subject: `Re: ${email.subject}`,
+      body: response,
+      suggested_followups: [],
+      metadata: {
+        category: email.labels?.[0] || null,
+        action_item: email.actionItem || null
+      }
     };
+  }
 
+  const finalDraft = {
+    id: `draft-${Date.now()}`,
+    emailId,
+    subject: parsedDraft.subject,
+    body: parsedDraft.body,
+    suggested_followups: parsedDraft.suggested_followups || [],
+    metadata: parsedDraft.metadata || {},
+    createdAt: new Date().toISOString()
+  };
 
-    const drafts = loadDrafts();
-    drafts.push(draft);
-    saveDrafts(drafts);
+  const drafts = loadDrafts();
+  drafts.push(finalDraft);
+  saveDrafts(drafts);
 
-    return draft;
+  return finalDraft;
 }
 
 module.exports = { generateDraft, loadDrafts, saveDrafts };
