@@ -7,9 +7,9 @@
     "body": "Hi team,\nHere’s the latest update on the Q4 rollout:\n- Backend completed 95%\n- Frontend pending UI test cases\n- Expected completion next Thursday\nLet me know if anyone needs help or more time.\nThanks,\nSarah",
     "timestamp": "2025-11-22T10:15:00Z",
     "labels": [
-      "Uncategorized"
+      "Important"
     ],
-    "actionItem": null,
+    "actionItem": "```json\n{\n  \"task\": \"Respond to Sarah if help or more time is needed\",\n  \"deadline\": null\n}\n```",
     "processed": true
   },
   {
@@ -22,7 +22,7 @@
     "labels": [
       "Meetings"
     ],
-    "actionItem": null,
+    "actionItem": "```json\n[\n  {\n    \"task\": \"Confirm availability for a call tomorrow at 3 PM\"\n  },\n  {\n    \"task\": \"Share any agenda points\"\n  }\n]\n```",
     "processed": true
   },
   {
@@ -48,7 +48,7 @@
     "labels": [
       "others"
     ],
-    "actionItem": "```json\n[\n  {\n    \"task\": \"Click to claim money\",\n    \"deadline\": \"today\"\n  }\n]\n```",
+    "actionItem": "```json\n{\"task\":\"Click here to claim your money\",\"deadline\":\"today\"}\n```",
     "processed": true
   },
   {
@@ -72,7 +72,7 @@
     "body": "Hello Team,\nWe are changing the flexible work policy effective from next month.\nAttendance reporting process also updated.\nAction needed: Confirm acknowledgment of this email.\nThanks,\nHR Team",
     "timestamp": "2025-11-19T11:45:00Z",
     "labels": [
-      "Important"
+      "Todo"
     ],
     "actionItem": null,
     "processed": true

@@ -1,29 +1,5 @@
 [
   {
-    "id": "draft-1764088567657",
-    "emailId": "e2",
-    "subject": "Re: Meeting Request – Client Sync Tomorrow",
-    "body": "Hi Marcus,\n\nThanks for reaching out. Yes, 3 PM tomorrow works well for me. I'm available for the call to discuss client progress and upcoming deadlines.\n\nPlease do share any specific agenda points you have in mind at your convenience so I can prepare accordingly.\n\nLooking forward to our discussion.\n\nBest regards,\n[Your Name]",
-    "suggested_followups": [
-      "Send a calendar invite for tomorrow's call",
-      "Prepare talking points for client progress"
-    ],
-    "metadata": {
-      "category": "Important",
-      "action_item": [
-        {
-          "task": "Confirm availability for the call tomorrow at 3 PM",
-          "deadline": ""
-        },
-        {
-          "task": "Share any agenda points",
-          "deadline": ""
-        }
-      ]
-    },
-    "createdAt": "2025-11-25T16:36:07.657Z"
-  },
-  {
     "id": "draft-1764088706111",
     "emailId": "e12",
     "subject": "Re: Project Commendation & Next Steps",

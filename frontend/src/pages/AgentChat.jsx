@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Bot, Send, User } from 'lucide-react';
-import api from '../api'; // Make sure this path is correct
+import { Bot, Send, User, Sparkles, Mail, CornerDownLeft } from 'lucide-react';
+import api from '../api';
 
 const AgentChat = () => {
   const location = useLocation();
@@ -25,7 +25,7 @@ const AgentChat = () => {
       setMessages([
         {
           id: Date.now(),
-          text: `You're asking about the email from ${contextEmail.senderName || contextEmail.sender} regarding "${contextEmail.subject}". How can I assist you with this email?`,
+          text: `I see you're looking at the email from **${contextEmail.senderName || contextEmail.sender}** regarding "**${contextEmail.subject}**".\n\nHow can I help you with this?`,
           sender: 'agent'
         }
       ]);
@@ -70,7 +70,7 @@ const AgentChat = () => {
 
       const agentMessage = {
         id: Date.now() + 1,
-        text: responseText || "No meaningful response from the agent",
+        text: responseText || "I'm sorry, I couldn't generate a meaningful response.",
         sender: 'agent',
       };
       setMessages(prev => [...prev, agentMessage]);
@@ -83,7 +83,8 @@ const AgentChat = () => {
       setMessages(prev => [...prev, {
         id: Date.now() + 2,
         text: errMsg,
-        sender: 'agent'
+        sender: 'agent',
+        isError: true
       }]);
     }
 
@@ -98,99 +99,138 @@ const AgentChat = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-gray-50">
+    <div className="flex flex-col h-full bg-gray-50/50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent pointer-events-none" />
+
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-8 py-5">
-        <h1 className="text-xl font-bold text-gray-800 mb-1">Agent Chat</h1>
-        <p className="text-gray-500 text-sm">Ask questions about this email</p>
+      <div className="bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4 sticky top-0 z-10 flex items-center gap-3 shadow-sm">
+        <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+          <Sparkles size={20} />
+        </div>
+        <div>
+          <h1 className="text-lg font-bold text-gray-900 leading-tight">Agent Assistant</h1>
+          <p className="text-xs text-gray-500 font-medium">Powered by Gemini</p>
+        </div>
       </div>
 
-      {/* Context Email Section */}
+      {/* Context Email Banner */}
       {contextEmail && (
-        <div className="bg-blue-50/50 border-b border-blue-100 px-8 py-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-start gap-3">
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold text-gray-900 mb-1">Context Email:</h3>
-                <p className="text-sm text-gray-700 font-medium">{contextEmail.subject}</p>
-                <p className="text-xs text-gray-500 mt-0.5">From: {contextEmail.senderName || contextEmail.sender}</p>
+        <div className="mx-6 mt-6 mb-2">
+          <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
+            <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+              <Mail size={18} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Context</span>
+                <div className="h-px flex-1 bg-gray-100"></div>
               </div>
+              <h3 className="font-semibold text-gray-900 truncate text-sm">{contextEmail.subject}</h3>
+              <p className="text-xs text-gray-500 truncate">From: {contextEmail.senderName || contextEmail.sender}</p>
             </div>
           </div>
         </div>
       )}
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-y-auto p-8">
+      <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar">
         {messages.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-center opacity-60">
-            <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
-              <Bot size={32} className="text-gray-400" />
+          <div className="h-full flex flex-col items-center justify-center text-center opacity-60 pb-20">
+            <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mb-6 shadow-sm border border-gray-100">
+              <Bot size={40} className="text-indigo-400" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">Start chatting with the Email Agent</h2>
-            <p className="text-gray-500 max-w-md">Ask questions, summarize email content, extract tasks, or request reply drafting.</p>
+            <h2 className="text-xl font-bold text-gray-800 mb-2">How can I help you?</h2>
+            <p className="text-gray-500 max-w-xs text-sm leading-relaxed">
+              I can summarize emails, draft replies, extract action items, or answer questions about your inbox.
+            </p>
           </div>
         ) : (
-          <div className="space-y-6 max-w-4xl mx-auto">
+          <div className="space-y-6 max-w-3xl mx-auto pb-4">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex items-start gap-4 ${message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                className={`flex items-end gap-3 ${message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
                 {/* Avatar */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${message.sender === 'user' ? 'bg-gray-200' : 'bg-emerald-500'
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${message.sender === 'user'
+                    ? 'bg-gray-900 text-white'
+                    : message.isError ? 'bg-red-100 text-red-500' : 'bg-white text-indigo-600 border border-indigo-100'
                   }`}>
                   {message.sender === 'user' ? (
-                    <User size={20} className="text-gray-600" />
+                    <User size={14} />
                   ) : (
-                    <Bot size={20} className="text-white" />
+                    <Bot size={16} />
                   )}
                 </div>
 
                 {/* Message Bubble */}
-                <div className={`p-4 rounded-2xl max-w-[80%] ${message.sender === 'user'
-                  ? 'bg-emerald-500 text-white rounded-tr-none'
-                  : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm'
+                <div className={`px-5 py-3.5 rounded-2xl max-w-[85%] shadow-sm text-sm leading-relaxed ${message.sender === 'user'
+                  ? 'bg-gray-900 text-white rounded-br-none'
+                  : message.isError
+                    ? 'bg-red-50 text-red-800 border border-red-100 rounded-bl-none'
+                    : 'bg-white border border-gray-100 text-gray-700 rounded-bl-none'
                   }`}>
-                  <p className="leading-relaxed whitespace-pre-wrap">
-                    {typeof message.text === 'string' ? message.text : JSON.stringify(message.text, null, 2)}
-                  </p>
+                  <div className="whitespace-pre-wrap markdown-body">
+                    {/* Simple rendering for bold text */}
+                    {typeof message.text === 'string'
+                      ? message.text.split(/(\*\*.*?\*\*)/g).map((part, i) =>
+                        part.startsWith('**') && part.endsWith('**')
+                          ? <strong key={i}>{part.slice(2, -2)}</strong>
+                          : part
+                      )
+                      : JSON.stringify(message.text, null, 2)
+                    }
+                  </div>
                 </div>
               </div>
             ))}
+            {loading && (
+              <div className="flex items-end gap-3">
+                <div className="w-8 h-8 rounded-full bg-white text-indigo-600 border border-indigo-100 flex items-center justify-center shadow-sm">
+                  <Bot size={16} />
+                </div>
+                <div className="bg-white border border-gray-100 px-4 py-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1.5 items-center">
+                  <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
         )}
       </div>
 
       {/* Input Area */}
-      <div className="bg-white border-t border-gray-200 p-6">
-        <div className="max-w-4xl mx-auto">
-          <form onSubmit={handleSendMessage} className="relative flex gap-4 items-end">
-            <div className="flex-1 relative">
+      <div className="p-6 bg-white/80 backdrop-blur-md border-t border-gray-100">
+        <div className="max-w-3xl mx-auto">
+          <form onSubmit={handleSendMessage} className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className="relative flex items-end gap-2 bg-white rounded-2xl border border-gray-200 p-2 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all">
               <textarea
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={loading}
-                placeholder="Example: 'Summarize this email' or 'Draft a reply asking for an agenda'"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 pr-12 text-gray-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none h-[60px] min-h-[60px] max-h-32 transition-all"
-                style={{ height: Math.max(60, Math.min(128, inputValue.split('\n').length * 24 + 24)) + 'px' }}
+                placeholder="Ask anything..."
+                className="w-full bg-transparent border-none p-3 text-gray-700 placeholder:text-gray-400 focus:ring-0 outline-none resize-none max-h-32 min-h-[50px] text-sm"
+                style={{ height: Math.max(50, Math.min(128, inputValue.split('\n').length * 20 + 20)) + 'px' }}
               />
+              <button
+                type="submit"
+                disabled={!inputValue.trim() || loading}
+                className={`p-3 rounded-xl transition-all duration-200 flex-shrink-0 mb-0.5 ${!inputValue.trim() || loading
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  : 'bg-gray-900 text-white hover:bg-black shadow-md transform hover:scale-105 active:scale-95'
+                  }`}
+              >
+                <CornerDownLeft size={18} />
+              </button>
             </div>
-            <button
-              type="submit"
-              disabled={!inputValue.trim() || loading}
-              className={`p-4 rounded-xl transition-all duration-200 flex-shrink-0 ${!inputValue.trim() || loading
-                ? 'bg-emerald-200 text-white cursor-not-allowed'
-                : 'bg-emerald-500 text-white hover:bg-emerald-600 shadow-md transform hover:scale-105'
-                }`}
-            >
-              {loading ? "..." : <Send size={20} />}
-            </button>
           </form>
-          <p className="text-xs text-gray-400 mt-3 ml-1">
-            Press <b>Enter</b> to send • <b>Shift+Enter</b> for new line
+          <p className="text-[10px] text-center text-gray-400 mt-3 font-medium">
+            AI can make mistakes. Please review generated actions.
           </p>
         </div>
       </div>

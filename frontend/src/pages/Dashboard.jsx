@@ -23,29 +23,28 @@ const Dashboard = () => {
   }
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
-      <div style={{ width: 360, borderRight: '1px solid #e5e7eb', overflowY: 'auto' }}>
-        <InboxFetcher 
-          key={reloadKey} 
-          onSelectEmail={setSelected} 
+    <div className="flex h-screen bg-gray-50 overflow-hidden">
+      {/* Sidebar / Inbox List */}
+      <div className="w-96 border-r border-gray-200 bg-white flex flex-col shadow-sm z-10">
+        <InboxFetcher
+          key={reloadKey}
+          onSelectEmail={setSelected}
+          onProcess={processEmails}
+          processMsg={msg}
         />
-
-        <div>
-          <button 
-            className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-20' 
-            onClick={processEmails}
-          >
-            Process Inbox
-          </button>
-          <span>{msg}</span>
-        </div>
       </div>
-      <div style={{ flex: 1, overflow: 'hidden' }}>
+
+      {/* Main Content / Email Viewer */}
+      <div className="flex-1 flex flex-col overflow-hidden relative">
         {selected ? (
           <EmailViewer email={selected} />
         ) : (
-          <div className="h-full flex items-center justify-center text-gray-400">
-            Select an email
+          <div className="h-full flex flex-col items-center justify-center text-gray-400 bg-gray-50/50">
+            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+              <span className="text-4xl opacity-50">📬</span>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-600 mb-2">No Email Selected</h3>
+            <p className="text-gray-400 max-w-xs text-center">Select an email from the list to view its contents and AI insights.</p>
           </div>
         )}
       </div>
