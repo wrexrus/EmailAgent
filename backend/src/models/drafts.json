@@ -1,17 +1,54 @@
 [
   {
-    "id": "draft-1764088706111",
+    "id": "draft-1764092609604",
     "emailId": "e12",
     "subject": "Re: Project Commendation & Next Steps",
-    "body": "Thank you for the commendation on the successful delivery of Phase 2.\n\nI confirm receipt of the action to commence Phase 3 planning by Friday and will initiate the necessary steps immediately.\n\nRegarding the review call, I will prepare some availability options and send them over shortly for your convenience. Please also let me know if there is a specific agenda you would like to cover.",
+    "body": "Dear CEO Office,\n\nThank you for the commendation regarding the successful delivery of Phase 2. We appreciate the board's recognition.\n\nI have received the instructions to commence Phase 3 planning and to schedule a review call. I will begin Phase 3 planning immediately to meet the Friday deadline and will coordinate to schedule the review call by the end of the week.\n\nBest regards,",
     "suggested_followups": [
-      "Send availability options for review call",
-      "Provide update on Phase 3 planning initiation"
+      "Send calendar invite for review call",
+      "Provide initial Phase 3 planning update",
+      "Confirm key stakeholders for Phase 3"
     ],
     "metadata": {
-      "category": "Project Update",
-      "action_item": null
+      "category": "Project Management",
+      "action_item": [
+        "Initiate Phase 3 planning by Friday",
+        "Schedule review call by end of week"
+      ]
     },
-    "createdAt": "2025-11-25T16:38:26.111Z"
+    "createdAt": "2025-11-25T17:43:29.605Z"
+  },
+  {
+    "id": "draft-1764093868911",
+    "emailId": null,
+    "subject": "New Draft",
+    "body": "",
+    "suggested_followups": [],
+    "metadata": {},
+    "createdAt": "2025-11-25T18:04:28.911Z"
+  },
+  {
+    "id": "draft-1764096093362",
+    "emailId": "e2",
+    "subject": "Re: Meeting Request – Client Sync Tomorrow",
+    "body": "Hi Marcus,\n\nThank you for your meeting request.\n\nI am available for a call tomorrow at 3 PM to discuss the client progress and upcoming deadlines.\n\nI will review the key discussion points and share my agenda items with you shortly.\n\nBest regards,",
+    "suggested_followups": [
+      "Prepare my agenda points for the client sync.",
+      "Send call details or preferred platform to Marcus."
+    ],
+    "metadata": {
+      "category": "Meetings",
+      "action_item": [
+        {
+          "task": "Confirm availability for a call tomorrow at 3 PM",
+          "deadline": null
+        },
+        {
+          "task": "Share any agenda points",
+          "deadline": null
+        }
+      ]
+    },
+    "createdAt": "2025-11-25T18:41:33.362Z"
   }
 ]

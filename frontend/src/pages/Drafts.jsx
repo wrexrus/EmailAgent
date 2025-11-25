@@ -16,21 +16,39 @@ const Drafts = () => {
     loadDrafts();
   }, []);
 
-  async function loadDrafts() {
+  async function loadDrafts(targetId = null) {
     try {
       const res = await api.get("/api/drafts");
       setDrafts(res.data);
 
+      // 1. Prioritize explicitly requested draft (e.g. newly created)
+      if (targetId) {
+        const found = res.data.find(d => d.id === targetId);
+        if (found) return setSelectedDraft(found);
+      }
+
+      // 2. Then check URL query param
       if (queryDraftId) {
         const found = res.data.find(d => d.id === queryDraftId);
         if (found) return setSelectedDraft(found);
       }
 
+      // 3. Fallback to first draft if list is not empty
       if (res.data.length > 0) setSelectedDraft(res.data[0]);
     } catch (err) {
       console.error("Failed to load drafts", err);
     }
   }
+
+  const handleCreateCustomDraft = async () => {
+    try {
+      const res = await api.post("/api/drafts/custom");
+      // Reload and explicitly select the new draft
+      loadDrafts(res.data.id);
+    } catch (err) {
+      alert("Failed to create custom draft");
+    }
+  };
 
 
   const handleSelectDraft = (draft) => setSelectedDraft(draft);
@@ -119,9 +137,23 @@ const Drafts = () => {
       {/* LEFT – Draft list */}
       <div className="w-96 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
         <div className="p-6 border-b border-gray-100 bg-white sticky top-0 z-10">
-          <h1 className="text-xl font-bold text-gray-900 mb-1">Saved Drafts</h1>
-          <p className="text-gray-500 text-sm font-medium">{drafts.length} draft(s)</p>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">Saved Drafts</h1>
+              <p className="text-gray-500 text-sm font-medium">{drafts.length} draft(s)</p>
+            </div>
+            <button
+              onClick={handleCreateCustomDraft}
+              className="flex flex-col items-center justify-center gap-1 bg-indigo-50 text-indigo-600 rounded-xl hover:bg-indigo-100 transition-colors border border-indigo-100 w-18 h-18 shadow-sm"
+              title="Create Custom Draft"
+            >
+              <FileEdit size={24} />
+              <span className="text-[10px] font-bold uppercase tracking-wide">Custom</span>
+            </button>
+          </div>
+
         </div>
+
 
         <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar bg-gray-50/30">
           {drafts.map((draft) => (
@@ -179,10 +211,13 @@ const Drafts = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={handleRegenerate}
-                disabled={isRegenerating}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors text-sm font-medium"
+                disabled={isRegenerating || !selectedDraft?.emailId}   // <= Modified
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border 
+                  ${selectedDraft?.emailId
+                    ? "text-gray-600 hover:bg-gray-50"
+                    : "text-gray-400 cursor-not-allowed opacity-50"}`}
               >
-                <RotateCcw size={16} className={isRegenerating ? "animate-spin" : ""} />
+                <RotateCcw size={18} />
                 {isRegenerating ? "Regenerating..." : "Regenerate"}
               </button>
 

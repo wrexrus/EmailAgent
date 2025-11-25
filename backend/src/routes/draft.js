@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { generateDraft, loadDrafts, saveDrafts } = require("../services/draftService");
+const { generateDraft, loadDrafts, saveDrafts, createCustomDraft } = require("../services/draftService");
 
-// Create Draft
+// Create Draft from email
 router.post("/create", async (req, res) => {
   const { emailId } = req.body;
   if (!emailId) return res.status(400).json({ error: "emailId required" });
@@ -11,8 +11,19 @@ router.post("/create", async (req, res) => {
     const draft = await generateDraft(emailId);
     res.json(draft);
   } catch (error) {
-    console.error(error);
+    console.error("Draft generation failed:", error);
     res.status(500).json({ error: "Draft generation failed" });
+  }
+});
+
+// Create Custom Draft (Blank)
+router.post("/custom", async (req, res) => {
+  try {
+    const newDraft = await createCustomDraft();
+    res.json(newDraft);
+  } catch (err) {
+    console.error("Custom draft creation failed:", err);
+    res.status(500).json({ error: "Unable to create custom draft" });
   }
 });
 

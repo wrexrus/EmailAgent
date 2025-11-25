@@ -22,6 +22,24 @@ function saveDrafts(data) {
   fs.writeFileSync(DRAFT_PATH, JSON.stringify(data, null, 2));
 }
 
+async function createCustomDraft() {
+  const draft = {
+    id: `draft-${Date.now()}`,
+    emailId: null, // since it's custom
+    subject: "New Draft",
+    body: "",
+    suggested_followups: [],
+    metadata: {},
+    createdAt: new Date().toISOString()
+  };
+
+  const drafts = loadDrafts();
+  drafts.push(draft);
+  saveDrafts(drafts);
+
+  return draft;
+}
+
 async function generateDraft(emailId) {
   const emails = loadInbox();
   const email = emails.find(e => e.id === emailId);
@@ -119,4 +137,4 @@ OUTPUT FORMAT:
   return finalDraft;
 }
 
-module.exports = { generateDraft, loadDrafts, saveDrafts };
+module.exports = { generateDraft,createCustomDraft, loadDrafts, saveDrafts };

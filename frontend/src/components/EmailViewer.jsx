@@ -1,4 +1,4 @@
-import { ArrowLeft, Sparkles, Calendar, User, Tag, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Sparkles, Calendar, User, Tag, CheckCircle2,PencilLine  } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import api from "../api";
 
@@ -148,14 +148,15 @@ export default function EmailViewer({ email }) {
 
                                 // Redirect with ID
                                 window.location.href = `/drafts?draftId=${newDraftId}`;
-                            } catch(err) {
+                            } catch (err) {
                                 alert("Failed to generate draft");
-                                console.log("Failed to generate draft",err);
+                                console.log("Failed to generate draft", err);
                             }
                         }}
-                        className="mt-4 bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600"
+                        className="ml-4 group relative inline-flex items-center justify-center gap-3 bg-gray-900 hover:bg-black text-white text-base font-medium px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 w-full md:w-auto min-w-[240px]"
                     >
-                        Generate Draft
+                        <PencilLine size={18} className="text-yellow-300 group-hover:scale-110 transition-transform" />
+                        <span>Generate Draft</span>
                     </button>
 
                 </div>

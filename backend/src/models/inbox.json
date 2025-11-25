@@ -9,7 +9,7 @@
     "labels": [
       "Important"
     ],
-    "actionItem": "```json\n{\n  \"task\": \"Respond to Sarah if help or more time is needed\",\n  \"deadline\": null\n}\n```",
+    "actionItem": "```json\n{\n  \"task\": \"Inform Sarah if you need help or more time.\",\n  \"deadline\": null\n}\n```",
     "processed": true
   },
   {
@@ -22,7 +22,7 @@
     "labels": [
       "Meetings"
     ],
-    "actionItem": "```json\n[\n  {\n    \"task\": \"Confirm availability for a call tomorrow at 3 PM\"\n  },\n  {\n    \"task\": \"Share any agenda points\"\n  }\n]\n```",
+    "actionItem": "```json\n[\n  {\"task\":\"Confirm availability for a call tomorrow at 3 PM\",\"deadline\":null},\n  {\"task\":\"Share any agenda points\",\"deadline\":null}\n]\n```",
     "processed": true
   },
   {
@@ -48,7 +48,7 @@
     "labels": [
       "others"
     ],
-    "actionItem": "```json\n{\"task\":\"Click here to claim your money\",\"deadline\":\"today\"}\n```",
+    "actionItem": "```json\n[\n  {\n    \"task\": \"Claim your money\",\n    \"deadline\": \"today\"\n  }\n]\n```",
     "processed": true
   },
   {
@@ -61,7 +61,7 @@
     "labels": [
       "Important"
     ],
-    "actionItem": "```json\n{\n  \"task\": \"submit your weekly timesheet\",\n  \"deadline\": \"today 6 PM\"\n}\n```",
+    "actionItem": "```json\n[\n  {\n    \"task\": \"Submit weekly timesheet\",\n    \"deadline\": \"today 6 PM\"\n  }\n]\n```",
     "processed": true
   },
   {

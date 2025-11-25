@@ -95,17 +95,25 @@ export default function InboxFetcher({ onSelectEmail, onProcess, processMsg }) {
           </div>
           <h2 className="font-bold text-xl tracking-tight">Inbox</h2>
         </div>
-        <div className="flex items-center gap-1">
-          <label className="cursor-pointer p-2 text-gray-400 hover:bg-gray-50 hover:text-gray-700 rounded-lg transition-all duration-200 group relative" title="Upload JSON">
+        <div className="flex items-center gap-3">
+          <label
+            className="cursor-pointer flex flex-col items-center justify-center gap-1 bg-indigo-50 text-indigo-600 rounded-xl hover:bg-indigo-100 transition-colors border border-indigo-100 w-18 h-16 shadow-sm"
+            title="Upload JSON"
+          >
             <Upload size={20} />
+            <span className="text-[10px] font-bold uppercase tracking-wide">Load Inbox</span>
             <input type="file" accept=".json,application/json" onChange={handleFile} className="hidden" />
           </label>
           <button
             onClick={onProcess}
-            className={`p-2 text-gray-400 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-all duration-200 ${processMsg === "Processing..." ? "text-blue-600 bg-blue-50" : ""}`}
+            className={`flex flex-col items-center justify-center gap-1 rounded-xl transition-colors border w-16 h-18 shadow-sm ${processMsg === "Processing..."
+                ? "bg-blue-100 text-blue-700 border-blue-200"
+                : "bg-indigo-50 text-indigo-600 hover:bg-indigo-100 border-indigo-100"
+              }`}
             title="Process Inbox"
           >
             <RefreshCw size={20} className={processMsg === "Processing..." ? "animate-spin" : ""} />
+            <span className="text-[10px] font-bold uppercase tracking-wide">Process Mails</span>
           </button>
         </div>
       </div>
