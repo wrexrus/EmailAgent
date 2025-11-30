@@ -117,6 +117,10 @@ npm run dev
 ```
 *The frontend will run on `http://localhost:5173`*
 
+Create an env file:
+```bash
+Set VITE_BACKEND_URL as (http://localhost:5000)
+```
 ---
 
 ## � Usage Guide
