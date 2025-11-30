@@ -9,7 +9,7 @@
     "labels": [
       "Important"
     ],
-    "actionItem": "```json\n{\n  \"task\": \"Inform Sarah if you need help or more time.\",\n  \"deadline\": null\n}\n```",
+    "actionItem": "```json\n[\n  {\n    \"task\": \"Inform Sarah if assistance or additional time is needed for the Q4 rollout\",\n    \"deadline\": \"\"\n  }\n]\n```",
     "processed": true
   },
   {
@@ -20,9 +20,9 @@
     "body": "Hello,\nCould we schedule a call tomorrow at 3 PM to discuss the client progress and upcoming deadlines?\nPlease confirm availability and share any agenda points.\nRegards,\nMarcus",
     "timestamp": "2025-11-21T16:30:00Z",
     "labels": [
-      "Meetings"
+      "Important"
     ],
-    "actionItem": "```json\n[\n  {\"task\":\"Confirm availability for a call tomorrow at 3 PM\",\"deadline\":null},\n  {\"task\":\"Share any agenda points\",\"deadline\":null}\n]\n```",
+    "actionItem": "```json\n{\"task\":\"Confirm availability for a call tomorrow at 3 PM and share any agenda points.\",\"deadline\":\"tomorrow at 3 PM\"}\n```",
     "processed": true
   },
   {
@@ -33,7 +33,7 @@
     "body": "Welcome to this week's newsletter! We cover:\n- OpenAI’s latest models\n- DeepSeek success reports\n- Future of LLM regulation\nUnsubscribe anytime using the link below.",
     "timestamp": "2025-11-21T08:20:00Z",
     "labels": [
-      "Newsletter"
+      "others"
     ],
     "actionItem": "null",
     "processed": true
@@ -48,7 +48,7 @@
     "labels": [
       "others"
     ],
-    "actionItem": "```json\n[\n  {\n    \"task\": \"Claim your money\",\n    \"deadline\": \"today\"\n  }\n]\n```",
+    "actionItem": "```json\n[\n  {\n    \"task\": \"Click here to claim your money\",\n    \"deadline\": \"today\"\n  }\n]\n```",
     "processed": true
   },
   {
@@ -61,7 +61,7 @@
     "labels": [
       "Important"
     ],
-    "actionItem": "```json\n[\n  {\n    \"task\": \"Submit weekly timesheet\",\n    \"deadline\": \"today 6 PM\"\n  }\n]\n```",
+    "actionItem": "```json\n{\n  \"task\": \"submit your weekly timesheet\",\n  \"deadline\": \"today 6 PM\"\n}\n```",
     "processed": true
   },
   {
@@ -72,9 +72,9 @@
     "body": "Hello Team,\nWe are changing the flexible work policy effective from next month.\nAttendance reporting process also updated.\nAction needed: Confirm acknowledgment of this email.\nThanks,\nHR Team",
     "timestamp": "2025-11-19T11:45:00Z",
     "labels": [
-      "Todo"
+      "Important"
     ],
-    "actionItem": null,
+    "actionItem": "```json\n{\n  \"task\": \"Confirm acknowledgment of this email\",\n  \"deadline\": null\n}\n```",
     "processed": true
   },
   {
@@ -85,9 +85,9 @@
     "body": "Hi,\nPlease fix the payment API integration issue and send an update by today evening.\nThis is a P1 blocker.\nRegards,\nTeam Lead",
     "timestamp": "2025-11-18T15:10:00Z",
     "labels": [
-      "Uncategorized"
+      "Important"
     ],
-    "actionItem": null,
+    "actionItem": "```json\n{\n  \"task\": \"fix the payment API integration issue and send an update\",\n  \"deadline\": \"today evening\"\n}\n```",
     "processed": true
   },
   {
@@ -98,7 +98,7 @@
     "body": "You're invited to our Annual Company Meetup on Friday at 5 PM.\nNo action required – just confirm attendance.",
     "timestamp": "2025-11-18T10:05:00Z",
     "labels": [
-      "Uncategorized"
+      "Important"
     ],
     "actionItem": null,
     "processed": true

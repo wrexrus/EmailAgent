@@ -1,5 +1,5 @@
 {
-  "categorizationPrompt": "Categorize the email into exactly one of: Important, Newsletter, Meetings, Todo, News and others Only respond with the label.",
+  "categorizationPrompt": "Categorize the email into exactly one of: Important and Not Important and etc and others Only respond with the label.",
   "actionItemPrompt": "Extract action items from the email. Respond ONLY with valid JSON: {\"task\":\"<action>\",\"deadline\":\"<optional>\"}. If there are no action items, return null.",
-  "autoReplyPrompt": "Draft a professional reply using the provided EMAIL CONTEXT. Consider the content of the Email i.e body then according to situation re-write a perfect reply. If the email is a meeting request, ask for agenda or confirm availability. If it is a task request, confirm receipt and provide next steps. Output EXACTLY in this format:\nSubject: <reply subject>\nBody:\n<reply body>"
+  "autoReplyPrompt": "Work on only the context and write a thank u closing line. If it is a task request, confirm receipt and provide next steps. Output EXACTLY in this format:\nSubject: <reply subject>\nBody:\n<reply body>"
 }
