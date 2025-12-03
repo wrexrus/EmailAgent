@@ -4,7 +4,7 @@ An intelligent, AI-powered email automation system designed to revolutionize inb
 
 The core philosophy of this project is its **Prompt-Driven Architecture**. The agent's behavior—how it categorizes, what it extracts, and how it replies—is entirely dynamic and controlled by user-configurable system prompts.
 
----
+---ygrsygrdyhdrydetr
 
 ## 🚀 Features
 
